@@ -1,0 +1,14 @@
+# vendor.goodix.rc - Goodix Fingerprint On Display (FOD) Initialization
+# By Mehraan
+
+on post-fs-data
+    # Add for goodix Fingerprint device node and registers
+    chmod 0660 /dev/goodix_fp
+    chown system root /dev/goodix_fp
+
+    mkdir /data/vendor/goodix 0777 system system
+    mkdir /data/vendor/goodix/gf_data 0777 system system
+
+    chmod 0777 /proc/ppm/enabled
+    chmod 0777 /proc/ppm/policy/ut_fix_core_num
+    chmod 0777 /proc/ppm/policy/ut_fix_freq_idx

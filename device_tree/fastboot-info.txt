@@ -1,0 +1,8 @@
+# By Mehraan
+# fastboot-info.txt - Custom flashing schema for Infinix GT 20 Pro (X6871)
+flash boot
+flash vendor_boot
+flash vbmeta
+flash vbmeta_system
+flash vbmeta_vendor
+flash super

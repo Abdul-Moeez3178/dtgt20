@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<!--Copyright 2019-2021 (c) Pixelworks Inc. All Rightes Reserved.
+Pixelworks Inc. Company Confidential Strictly Private-->
+<IrisData>
+
+<Information Version="210" />
+
+<GoldenFwPath>/vendor/etc</GoldenFwPath>
+<CalibratedFwPath>/mnt/vendor/persist/display</CalibratedFwPath>
+
+<SoftIrisHDR10Enabled>false</SoftIrisHDR10Enabled>
+
+<!--Pixelworks dimming function-->
+<PxlwDimmingEnabled>false</PxlwDimmingEnabled>
+<PxlwDimmingRate MaxLevel="8191" RefreshRate="60" />
+
+<!--Pixelworks Soft Iris color mode list-->
+<SoftIrisColorModeList DefaultMode="1000">
+	<ColorMode ColorMode="0" RenderIntent="0">1</ColorMode>
+	<ColorMode ColorMode="7" RenderIntent="0">4</ColorMode>
+	<ColorMode ColorMode="7" RenderIntent="256">13</ColorMode>
+	<ColorMode ColorMode="9" RenderIntent="0">16</ColorMode>
+	<ColorMode ColorMode="9" RenderIntent="256">13</ColorMode>
+</SoftIrisColorModeList>
+
+<!--MCF of primary display-->
+<McfList Display="0">
+	<McfCheck Index="0">/vendor/etc/inparm/irissoft/mcfCheck.txt</McfCheck>
+	<McfCheck Index="1">/vendor/etc/inparm/irissoft/mcfCheck_low.txt</McfCheck>
+	<Mcf Index="0" Type="8" Check="0">/mnt/vendor/persist/display/pxlw_iris5_max.mcf</Mcf>
+	<Mcf Index="1" Type="8" Check="1">/mnt/vendor/persist/display/pxlw_iris5_100nits.mcf</Mcf>
+</McfList>
+
+<!--MCF of secondary display-->
+<!--<McfList Display="1">
+	<McfCheck Index="0">/vendor/etc/inparm/irissoft_d1/mcfCheck.txt</McfCheck>
+	<McfCheck Index="1">/vendor/etc/inparm/irissoft_d1/mcfCheck_low.txt</McfCheck>
+	<Mcf Index="0" Type="8" Check="0">/mnt/vendor/persist/display/pxlw_iris5_d1.mcf</Mcf>
+	<Mcf Index="1" Type="8" Check="1">/mnt/vendor/persist/display/pxlw_iris5_low_d1.mcf</Mcf>
+</McfList>-->
+
+<!--Soft Iris panel calibration-->
+<!--Gamut10 is APL HDR-->
+<!--Gamut13 is multiple brightness-->
+<InParmList Chip="5" Display="0" Version="108">
+	<InParm Index="0" ColorTemp="2500" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm1.txt</InParm>
+	<InParm Index="1" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm2.txt</InParm>
+	<InParm Index="2" ColorTemp="10000" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm3.txt</InParm>
+	<InParm Index="3" SubIndex="0" ColorTemp="2500" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm4.txt</InParm>
+	<InParm Index="3" SubIndex="1" ColorTemp="2500" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm4.txt</InParm>
+	<InParm Index="4" SubIndex="0" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm5.txt</InParm>
+	<InParm Index="4" SubIndex="1" ColorTemp="6500" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm5.txt</InParm>
+	<InParm Index="5" SubIndex="0" ColorTemp="10000" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm6.txt</InParm>
+	<InParm Index="5" SubIndex="1" ColorTemp="10000" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm6.txt</InParm>
+	<InParm Index="6" ColorTemp="2500" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm7.txt</InParm>
+	<InParm Index="7" ColorTemp="7016" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm8.txt</InParm>
+	<InParm Index="8" ColorTemp="10000" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm9.txt</InParm>
+	<InParm Index="9" SubIndex="0" ColorTemp="500" UseMaxcll="1" Pcs="2" Mcf="0" Interpolation="12">/vendor/etc/inparm/irissoft/inParm10_apl800.txt</InParm>
+	<InParm Index="9" SubIndex="1" ColorTemp="500" UseMaxcll="1" Pcs="2" Mcf="0" Interpolation="12">/vendor/etc/inparm/irissoft/inParm10_apl1500.txt</InParm>
+	<InParm Index="10" SubIndex="0" ColorTemp="1400" UseMaxcll="1" Pcs="2" Mcf="0" Interpolation="12">/vendor/etc/inparm/irissoft/inParm11_apl800.txt</InParm>
+	<InParm Index="10" SubIndex="1" ColorTemp="1400" UseMaxcll="1" Pcs="2" Mcf="0" Interpolation="12">/vendor/etc/inparm/irissoft/inParm11_apl1500.txt</InParm>
+	<InParm Index="11" SubIndex="0" ColorTemp="4000" UseMaxcll="1" Pcs="2" Mcf="0" Interpolation="12">/vendor/etc/inparm/irissoft/inParm12_apl800.txt</InParm>
+	<InParm Index="11" SubIndex="1" ColorTemp="4000" UseMaxcll="1" Pcs="2" Mcf="0" Interpolation="12">/vendor/etc/inparm/irissoft/inParm12_apl1500.txt</InParm>
+	<InParm Index="12" SubIndex="0" ColorTemp="2500" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm13.txt</InParm>
+	<InParm Index="12" SubIndex="1" ColorTemp="2500" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm13.txt</InParm>
+	<InParm Index="13" SubIndex="0" ColorTemp="7016" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm14.txt</InParm>
+	<InParm Index="13" SubIndex="1" ColorTemp="7016" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm14.txt</InParm>
+	<InParm Index="14" SubIndex="0" ColorTemp="10000" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm15.txt</InParm>
+	<InParm Index="14" SubIndex="1" ColorTemp="10000" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm15.txt</InParm>
+	<InParm Index="15" ColorTemp="2500" SubIndex="0" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm16.txt</InParm>
+	<InParm Index="15" ColorTemp="2500" SubIndex="1" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm16.txt</InParm>
+	<InParm Index="16" ColorTemp="6500" SubIndex="0" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm17.txt</InParm>
+	<InParm Index="16" ColorTemp="6500" SubIndex="1" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm17.txt</InParm>
+	<InParm Index="17" ColorTemp="10000" SubIndex="0" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm18.txt</InParm>
+	<InParm Index="17" ColorTemp="10000" SubIndex="1" Pcs="2" Mcf="1" Interpolation="10">/vendor/etc/inparm/irissoft/inParm18.txt</InParm>
+	<InParm Index="18" ColorTemp="2500" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm19.txt</InParm>
+	<InParm Index="19" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm20.txt</InParm>
+	<InParm Index="20" ColorTemp="10000" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/irissoft/inParm21.txt</InParm>
+	<InParm Index="25" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="1">/vendor/etc/inparm/irissoft/inParm_game_sdr2hdr_D70.txt</InParm>
+	<InParm Index="28" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="1">/vendor/etc/inparm/irissoft/inParm_video_sdr2hdr_D70.txt</InParm>
+	<!--<InParm Index="28" SubIndex="0" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm_video_sdr2hdr_D70.txt</InParm>
+	<InParm Index="28" SubIndex="1" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="10">/vendor/etc/inparm/irissoft/inParm_video_sdr2hdr_D70_APL.txt</InParm>-->
+	<InParm Index="31" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="1">/vendor/etc/inparm/irissoft/inParm_game_sdr2hdr_D65.txt</InParm>
+	<InParm Index="34" ColorTemp="6500" Pcs="2" Mcf="0" Interpolation="1">/vendor/etc/inparm/irissoft/inParm_video_sdr2hdr_D65.txt</InParm>
+</InParmList>
+
+<!--Iris5 panel calibration-->
+<InParmList Chip="3" Display="0" Version="108">
+	<InParm Index="0" SubIndex="0" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm1.txt</InParm>
+	<InParm Index="0" SubIndex="1" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm2.txt</InParm>
+	<InParm Index="0" SubIndex="2" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm3.txt</InParm>
+	<InParm Index="1" SubIndex="0" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm4.txt</InParm>
+	<InParm Index="1" SubIndex="1" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm5.txt</InParm>
+	<InParm Index="1" SubIndex="2" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm6.txt</InParm>
+	<InParm Index="2" SubIndex="0" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm14.txt</InParm>
+	<InParm Index="2" SubIndex="1" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm_video_sdr2hdr_D70.txt</InParm>
+	<InParm Index="2" SubIndex="2" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm_video_sdr2hdr_D70_APL.txt</InParm>
+	<InParm Index="3" SubIndex="0" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm5.txt</InParm>
+	<InParm Index="3" SubIndex="1" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm_video_sdr2hdr_D65.txt</InParm>
+	<InParm Index="3" SubIndex="2" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm17.txt</InParm>
+	<InParm Index="4" SubIndex="0" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm13.txt</InParm>
+	<InParm Index="4" SubIndex="1" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm14.txt</InParm>
+	<InParm Index="4" SubIndex="2" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm15.txt</InParm>
+	<InParm Index="5" SubIndex="0" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm16.txt</InParm>
+	<InParm Index="5" SubIndex="1" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm17.txt</InParm>
+	<InParm Index="5" SubIndex="2" Pcs="2" Mcf="0" Interpolation="0">/vendor/etc/inparm/iris5/inParm18.txt</InParm>
+</InParmList>
+
+</IrisData>

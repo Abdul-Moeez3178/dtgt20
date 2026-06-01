@@ -1,3 +1,0 @@
-# XOS Internals
-
-Research notes.

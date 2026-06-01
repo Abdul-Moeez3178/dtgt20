@@ -1,0 +1,28 @@
+# file_contexts - SELinux File Context Mappings for Infinix GT 20 Pro (X6871)
+# By Mehraan
+# Custom mappings to bind hardware nodes to their corresponding SELinux MAC policy labels.
+
+# =========================================================================
+# 1. Physical Device Character / Block Nodes
+# =========================================================================
+/dev/goodix_fp                             u:object_r:goodix_fp_device:s0
+/dev/richtap_haptic                        u:object_r:richtap_device:s0
+/dev/mobicore                              u:object_r:mobicore_device:s0
+/dev/mobicore-user                         u:object_r:mobicore_device:s0
+/dev/mtk_cmdq                              u:object_r:cmdq_device:s0
+
+# =========================================================================
+# 2. Sysfs Hardware Interfaces
+# =========================================================================
+/sys/class/power_supply/battery/bypass_charger     u:object_r:sysfs_battery_bypass:s0
+/sys/class/leds/mecha_loop_led(/.*)?               u:object_r:sysfs_mecha_led:s0
+/sys/devices/platform/11007000\.i2c/i2c-0/0-005d/.* u:object_r:sysfs_goodix_fp:s0
+/sys/class/leds/vibrator(/.*)?                     u:object_r:sysfs_richtap:s0
+
+# =========================================================================
+# 3. Secure Storage & Registry Paths
+# =========================================================================
+/mnt/vendor/persist/mcRegistry(/.*)?        u:object_r:mobicore_data_file:s0
+/data/vendor/mcRegistry(/.*)?              u:object_r:mobicore_data_file:s0
+/data/vendor/goodix(/.*)?                  u:object_r:goodix_data_file:s0
+/data/vendor/goodix/gf_data(/.*)?          u:object_r:goodix_data_file:s0

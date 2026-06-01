@@ -1,0 +1,42 @@
+# System and OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build / Output Intermediates
+*.tmp
+*.log
+*.bak
+out/
+build/
+tmp/
+temp/
+
+# IDE / Editor Settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Python Caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+venv/
+
+# Local / Temporary Unpack Directories
+boot_unpack/
+vendor_boot_unpack/
+twrp_unpack/
+extracted_decompressed/
+extracted_decompressed_part2/
+magiskboot_tmp/
+ramdisk_extracted/

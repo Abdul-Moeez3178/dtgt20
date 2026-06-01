@@ -1,0 +1,101 @@
+# recovery.te - SELinux MAC Rules for Infinix GT 20 Pro (X6871) Recovery Environment
+# By Mehraan
+# Custom SELinux Type Enforcement rules compiled to authorize TEE decryption, optical biometrics, and cache logs redirection.
+
+# =========================================================================
+# 1. Recovery Enclave Core Transitions
+# =========================================================================
+recovery_only(`
+    # Allow recovery to read kernel config and system properties
+    allow recovery kernel:system module_request;
+    allow recovery sysfs_devices_block:file rw_file_perms;
+    allow recovery sysfs_devices_block:dir r_dir_perms;
+
+    # Allow recovery to mount dynamic logical partitions
+    allow recovery super_block_device:blk_file rw_file_perms;
+    allow recovery dm_device:blk_file rw_file_perms;
+    allow recovery dm_device:chr_file rw_file_perms;
+    allow recovery block_device:blk_file { ioctl read write open getattr };
+    allow recovery block_device:dir { search write remove_name add_name read open };
+
+    # Allow custom cache redirects (redirecting /tranfs to /cache)
+    allow recovery cache_file:dir create_dir_perms;
+    allow recovery cache_file:file create_file_perms;
+    allow recovery cache_file:lnk_file create_file_perms;
+')
+
+# =========================================================================
+# 2. Trustonic Kinibi TEE Decryption & KeyMint Handshake
+# =========================================================================
+type mcDriverDaemon, domain;
+type mcDriverDaemon_exec, exec_type, file_type, vendor_file_type;
+type mobicore_device, dev_type;
+type mobicore_data_file, file_type, data_file_type;
+type persist_data_file, file_type;
+
+recovery_only(`
+    # mcDriverDaemon Transitions
+    init_daemon_domain(mcDriverDaemon)
+    allow mcDriverDaemon mobicore_device:chr_file rw_file_perms;
+    allow mcDriverDaemon mobicore_data_file:dir create_dir_perms;
+    allow mcDriverDaemon mobicore_data_file:file create_file_perms;
+    allow mcDriverDaemon persist_data_file:dir r_dir_perms;
+    allow mcDriverDaemon persist_data_file:file r_file_perms;
+    allow mcDriverDaemon self:netlink_socket create_socket_perms_no_ioctl;
+    
+    # Allow KeyMint and Gatekeeper HAL to access TEE services
+    allow hal_keymint_default mobicore_device:chr_file rw_file_perms;
+    allow hal_keymint_default mcDriverDaemon:binder call;
+    allow hal_gatekeeper_default mobicore_device:chr_file rw_file_perms;
+    allow hal_gatekeeper_default mcDriverDaemon:binder call;
+')
+
+# =========================================================================
+# 3. Goodix Fingerprint On Display (FOD) Optical Sensors
+# =========================================================================
+type goodix_fp_device, dev_type;
+type sysfs_goodix_fp, sysfs_type, fs_type;
+type goodix_data_file, file_type, data_file_type;
+
+recovery_only(`
+    # Allow recovery to read/write Goodix character device node
+    allow recovery goodix_fp_device:chr_file rw_file_perms;
+    allow recovery sysfs_goodix_fp:file rw_file_perms;
+    allow recovery sysfs_goodix_fp:dir r_dir_perms;
+    
+    # Allow fingerprint daemon to execute SPI read/writes
+    allow hal_fingerprint_default goodix_fp_device:chr_file rw_file_perms;
+    allow hal_fingerprint_default sysfs_goodix_fp:file rw_file_perms;
+    allow hal_fingerprint_default goodix_data_file:dir create_dir_perms;
+    allow hal_fingerprint_default goodix_data_file:file create_file_perms;
+')
+
+# =========================================================================
+# 4. RichTap Haptics & Vibration Driver Mappings
+# =========================================================================
+type richtap_device, dev_type;
+type sysfs_richtap, sysfs_type, fs_type;
+
+recovery_only(`
+    allow recovery richtap_device:chr_file rw_file_perms;
+    allow recovery sysfs_richtap:file rw_file_perms;
+    allow recovery sysfs_richtap:dir r_dir_perms;
+')
+
+# =========================================================================
+# 5. Motherboard Bypass Charging & Back Cover Mecha LED Arrays
+# =========================================================================
+type sysfs_battery_bypass, sysfs_type, fs_type;
+type sysfs_mecha_led, sysfs_type, fs_type;
+
+recovery_only(`
+    # Allow recovery and power daemons to toggle bypass charging
+    allow recovery sysfs_battery_bypass:file rw_file_perms;
+    allow recovery sysfs_battery_bypass:dir r_dir_perms;
+
+    # Allow lighting services to trigger back cover LEDs
+    allow recovery sysfs_mecha_led:file rw_file_perms;
+    allow recovery sysfs_mecha_led:dir r_dir_perms;
+    allow hal_light_default sysfs_mecha_led:file rw_file_perms;
+    allow hal_light_default sysfs_mecha_led:dir r_dir_perms;
+')
