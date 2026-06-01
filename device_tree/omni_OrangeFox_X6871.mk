@@ -4,7 +4,7 @@
 #
 
 # Inherit from common AOSP product configurations
-$(call inherit-product, $(SRC_TARGET_DIR)/target/product/aosp_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit from OrangeFox / TWRP configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
